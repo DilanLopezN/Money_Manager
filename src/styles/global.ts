@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
 :root {
-  --background: #f0f2f5;
+  --background: #202020;
   --red: #E52E4D;
   --headerbg: #0e0e0e;
 
@@ -19,6 +19,7 @@ export const GlobalStyle = createGlobalStyle`
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+ 
 }
 html {
   @media (max-width: 108px) {
@@ -30,6 +31,7 @@ html {
   }
 }
 body {
+  
   background: var(--background);
   -webkit-font-smoothing: antialiased;
 }
