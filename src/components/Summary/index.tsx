@@ -1,7 +1,41 @@
+import { Container } from './styles'
+import { ArrowCircleUp, ArrowCircleDown, Money } from 'phosphor-react'
+
 export function Summary() {
   return (
-    <div>
-      <h1>AAAAAAA</h1>
-    </div>
+    <Container>
+      <div>
+        <header>
+          <p>Entradas</p>
+          <ArrowCircleUp color="#50c878" size={32} />
+        </header>
+        <strong>
+          {' '}
+          <span>R$</span> 1000
+        </strong>
+      </div>
+
+      <div>
+        <header>
+          <p>Saidas</p>
+          <ArrowCircleDown color="#f72606" size={32} />
+        </header>
+        <strong>
+          {' '}
+          <span>R$</span> -500
+        </strong>
+      </div>
+
+      <div>
+        <header>
+          <p>Total</p>
+          <Money color="#06f766" size={42} />
+        </header>
+        <strong>
+          {' '}
+          <span>R$</span> 500
+        </strong>
+      </div>
+    </Container>
   )
 }
