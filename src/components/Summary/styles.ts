@@ -17,6 +17,7 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    text-shadow: 0 0 0.2em #f5f5f5;
   }
 
   strong {
