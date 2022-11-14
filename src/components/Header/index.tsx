@@ -3,15 +3,10 @@ import Modal from 'react-modal'
 import logoDoll from '../../assets/logo.svg'
 import { Container, Content } from './styles'
 
-export function Header() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  function openModal() {
-    setIsModalOpen(true)
-  }
-  function closeModal() {
-    setIsModalOpen(false)
-  }
-
+interface HeaderProps {
+  onOpenModal: () => void
+}
+export function Header({ onOpenModal }: HeaderProps) {
   return (
     <Container>
       <Content>
@@ -21,13 +16,9 @@ export function Header() {
             Money <span>Manager</span>
           </h1>
         </div>
-        <button type="button" onClick={openModal}>
+        <button type="button" onClick={onOpenModal}>
           Nova Transação
         </button>
-
-        <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
-          <h2>Cadastrar transação</h2>
-        </Modal>
       </Content>
     </Container>
   )

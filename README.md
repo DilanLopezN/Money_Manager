@@ -5,3 +5,4 @@ Bibliotecas utilizadas
 - Axios
 - MirageJs
 - React-Modal
+- Polished
