@@ -4,6 +4,7 @@ import closeModal from '../../assets/closeModal.svg'
 import upArrow from '../../assets/squareUpArrow.svg'
 import downArrow from '../../assets/squareDownArrow.svg'
 import { FormEvent, useState } from 'react'
+import { api } from '../../services/api'
 
 interface ModalTransactionProps {
   isOpen: boolean
@@ -23,12 +24,14 @@ export function ModalTransaction({
   function createNewTransaction(event: FormEvent) {
     event.preventDefault()
 
-    console.log({
+    const data = {
       title,
       value,
       category,
       type
-    })
+    }
+
+    api.post('/transactions', data)
   }
 
   return (
