@@ -1,8 +1,9 @@
 import Modal from 'react-modal'
-import { Container, ModalButtonsContainer } from './styles'
+import { Container, ModalButtonsContainer, RadioBox } from './styles'
 import closeModal from '../../assets/closeModal.svg'
 import upArrow from '../../assets/squareUpArrow.svg'
 import downArrow from '../../assets/squareDownArrow.svg'
+import { FormEvent, useState } from 'react'
 
 interface ModalTransactionProps {
   isOpen: boolean
@@ -13,6 +14,23 @@ export function ModalTransaction({
   isOpen,
   onRequestClose
 }: ModalTransactionProps) {
+  const [title, setTitle] = useState('')
+  const [value, setValue] = useState(0)
+  const [category, setCategory] = useState('')
+
+  const [type, setType] = useState('deposit')
+
+  function createNewTransaction(event: FormEvent) {
+    event.preventDefault()
+
+    console.log({
+      title,
+      value,
+      category,
+      type
+    })
+  }
+
   return (
     <Modal
       isOpen={isOpen}
@@ -23,25 +41,52 @@ export function ModalTransaction({
       <button type="button" onClick={onRequestClose} className="modalClose">
         <img src={closeModal} alt="fechar modal" />
       </button>
-      <Container>
+      <Container onSubmit={createNewTransaction}>
         <h2>Cadastrar transação</h2>
 
-        <input type="text" placeholder="Título" />
+        <input
+          type="text"
+          placeholder="Título"
+          value={title}
+          onChange={event => setTitle(event.target.value)}
+        />
 
-        <input type="number" placeholder="Valor" />
+        <input
+          type="number"
+          placeholder="Valor"
+          value={value}
+          onChange={event => setValue(Number(event.target.value))}
+        />
 
         <ModalButtonsContainer>
-          <button type="button">
+          <RadioBox
+            type="button"
+            onClick={() => {
+              setType('deposit')
+            }}
+            isChecked={type === 'deposit'}
+          >
             <img src={upArrow} alt="Entrada" />
             <span>Entrada</span>
-          </button>
-          <button type="button">
+          </RadioBox>
+          <RadioBox
+            type="button"
+            onClick={() => {
+              setType('withdraw')
+            }}
+            isChecked={type === 'withdraw'}
+          >
             <img src={downArrow} alt="Saída" />
             <span>Saída</span>
-          </button>
+          </RadioBox>
         </ModalButtonsContainer>
 
-        <input type="text" placeholder="Categoria" />
+        <input
+          type="text"
+          placeholder="Categoria"
+          value={category}
+          onChange={event => setCategory(event.target.value)}
+        />
 
         <button type="submit">Cadastrar</button>
       </Container>
