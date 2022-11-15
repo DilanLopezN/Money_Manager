@@ -7,7 +7,7 @@ import {
 } from 'react'
 import { api } from '../services/api'
 
-const TransactionsContext = createContext<TransactionsContextFormat>(
+export const TransactionsContext = createContext<TransactionsContextFormat>(
   {} as TransactionsContextFormat
 )
 

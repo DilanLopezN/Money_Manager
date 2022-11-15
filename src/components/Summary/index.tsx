@@ -1,11 +1,31 @@
 import { Container } from './styles'
 import { ArrowCircleUp, ArrowCircleDown, Money } from 'phosphor-react'
+import {
+  TransactionsContext,
+  useTransactions
+} from '../../hooks/useTransactions'
 import { useContext } from 'react'
-import { useTransactions } from '../../hooks/useTransactions'
 
 export function Summary() {
-  const { transactions } = useTransactions()
-  console.log(transactions)
+  const { transactions } = useContext(TransactionsContext)
+  const summary = transactions.reduce(
+    (acc, transaction) => {
+      if (transaction.type == 'deposit') {
+        acc.deposits += Number(transaction.amount)
+        acc.total += Number(transaction.amount)
+      } else {
+        acc.withdraws += Number(transaction.amount)
+        acc.total -= Number(transaction.amount)
+      }
+      return acc
+    },
+    {
+      deposits: 0,
+      withdraws: 0,
+      total: 0
+    }
+  )
+
   return (
     <Container>
       <div>
@@ -14,8 +34,10 @@ export function Summary() {
           <ArrowCircleUp color="#50c878" size={32} />
         </header>
         <strong>
-          {' '}
-          <span>R$</span> 1000
+          {new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+          }).format(summary.deposits)}
         </strong>
       </div>
 
@@ -25,8 +47,10 @@ export function Summary() {
           <ArrowCircleDown color="#f72606" size={32} />
         </header>
         <strong>
-          {' '}
-          <span>R$</span> -500
+          {new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+          }).format(summary.withdraws)}
         </strong>
       </div>
 
@@ -36,8 +60,10 @@ export function Summary() {
           <Money color="#06f766" size={42} />
         </header>
         <strong>
-          {' '}
-          <span>R$</span> 500
+          {new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+          }).format(summary.total)}
         </strong>
       </div>
     </Container>
