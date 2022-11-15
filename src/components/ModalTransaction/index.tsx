@@ -3,9 +3,8 @@ import { Container, ModalButtonsContainer, RadioBox } from './styles'
 import closeModal from '../../assets/closeModal.svg'
 import upArrow from '../../assets/squareUpArrow.svg'
 import downArrow from '../../assets/squareDownArrow.svg'
-import { FormEvent, useState, useContext } from 'react'
-import { api } from '../../services/api'
-import { TransactionsContext } from '../../TransactionsContext'
+import { FormEvent, useState } from 'react'
+import { useTransactions } from '../../hooks/useTransactions'
 
 interface ModalTransactionProps {
   isOpen: boolean
@@ -16,7 +15,7 @@ export function ModalTransaction({
   isOpen,
   onRequestClose
 }: ModalTransactionProps) {
-  const { createTransaction } = useContext(TransactionsContext)
+  const { createTransaction } = useTransactions()
 
   const [title, setTitle] = useState('')
   const [amount, setAmount] = useState(0)
