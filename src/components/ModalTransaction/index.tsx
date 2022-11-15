@@ -3,8 +3,9 @@ import { Container, ModalButtonsContainer, RadioBox } from './styles'
 import closeModal from '../../assets/closeModal.svg'
 import upArrow from '../../assets/squareUpArrow.svg'
 import downArrow from '../../assets/squareDownArrow.svg'
-import { FormEvent, useState } from 'react'
+import { FormEvent, useState, useContext } from 'react'
 import { api } from '../../services/api'
+import { TransactionsContext } from '../../TransactionsContext'
 
 interface ModalTransactionProps {
   isOpen: boolean
@@ -15,23 +16,28 @@ export function ModalTransaction({
   isOpen,
   onRequestClose
 }: ModalTransactionProps) {
+  const { createTransaction } = useContext(TransactionsContext)
+
   const [title, setTitle] = useState('')
-  const [value, setValue] = useState(0)
+  const [amount, setAmount] = useState(0)
   const [category, setCategory] = useState('')
 
   const [type, setType] = useState('deposit')
 
-  function createNewTransaction(event: FormEvent) {
+  async function createNewTransaction(event: FormEvent) {
     event.preventDefault()
-
-    const data = {
+    await createTransaction({
       title,
-      value,
+      amount,
       category,
       type
-    }
+    })
 
-    api.post('/transactions', data)
+    setTitle('')
+    setAmount(0)
+    setCategory('')
+    setType('deposit')
+    onRequestClose()
   }
 
   return (
@@ -57,8 +63,8 @@ export function ModalTransaction({
         <input
           type="number"
           placeholder="Valor"
-          value={value}
-          onChange={event => setValue(Number(event.target.value))}
+          value={amount}
+          onChange={event => setAmount(Number(event.target.value))}
         />
 
         <ModalButtonsContainer>
