@@ -8,7 +8,7 @@ createServer({
     transaction: Model
   },
 
-  seeds(server) {
+  /*seeds(server) {
     server.db.loadData({
       transactions: [
         {
@@ -29,19 +29,20 @@ createServer({
         }
       ]
     })
-  },
+  },*/
 
   routes() {
     this.namespace = 'api'
 
     this.get('/transactions', () => {
       return this.schema.all('transaction')
-    }),
-      this.post('/transactions', (schema, request) => {
-        const data = JSON.parse(request.requestBody)
+    })
 
-        return schema.create('transaction', data)
-      })
+    this.post('/transactions', (schema, request) => {
+      const data = JSON.parse(request.requestBody)
+
+      return schema.create('transaction', data)
+    })
   }
 })
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
