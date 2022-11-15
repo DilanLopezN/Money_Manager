@@ -1,9 +1,6 @@
 import { Container } from './styles'
 import { ArrowCircleUp, ArrowCircleDown, Money } from 'phosphor-react'
-import {
-  TransactionsContext,
-  useTransactions
-} from '../../hooks/useTransactions'
+import { TransactionsContext } from '../../hooks/useTransactions'
 import { useContext } from 'react'
 
 export function Summary() {

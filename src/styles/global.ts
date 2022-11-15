@@ -66,15 +66,19 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
+    
  }
 
  .reactModalContent {
   width: 100%;
   max-width: 576px;
-  background: #363F5F;
+  background: #111111;
   padding: 3rem;
   position: relative;
   border-radius: 1rem;
+  border: 2px solid #7dda32;
+  text-shadow: 0 0 0.8em #50c878;
+  box-shadow: 0 0 0.8em #50c878;
  }
 .modalClose {
     position: absolute;

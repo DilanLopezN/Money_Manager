@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { darken } from 'polished'
 export const Container = styled.form`
   h2 {
-    color: black;
+    color: #fff;
     font-size: 1.5rem;
     margin-bottom: 2rem;
   }
@@ -13,6 +13,8 @@ export const Container = styled.form`
     background: black;
     color: #fff;
     border-radius: 0.75rem;
+    border: 1px solid green;
+    text-shadow: 0 0 0.8em #50c878;
     font-size: 1rem;
     margin-top: 1.5rem;
     transition: filter 0.3s;
@@ -29,13 +31,13 @@ export const Container = styled.form`
     height: 4rem;
     border-radius: 0.75rem;
     border: 1px solid green;
-    background: grey;
-
+    background: black;
+    color: #fff;
     font-weight: 400;
     font-size: 1rem;
 
     &::placeholder {
-      color: black;
+      color: #fff;
     }
 
     & + input {
@@ -54,12 +56,15 @@ export const ModalButtonsContainer = styled.div`
 interface RadioBoxProps {
   isChecked: boolean
 }
+
 export const RadioBox = styled.button<RadioBoxProps>`
   height: 4rem;
   border: 1px solid #d7d7d7;
   border-radius: 0.5rem;
+  box-shadow: 0 0 0.8em #50c878;
+  text-shadow: 0 0 0.8em #111111;
 
-  background: ${props => (props.isChecked ? '#ccc' : 'transparent')};
+  background: ${props => (props.isChecked ? '#008656' : 'transparent')};
 
   display: flex;
   align-items: center;
@@ -74,6 +79,6 @@ export const RadioBox = styled.button<RadioBoxProps>`
     display: inline-block;
     margin-left: 1rem;
     font-size: 1rem;
-    color: black;
+    color: #fff;
   }
 `
